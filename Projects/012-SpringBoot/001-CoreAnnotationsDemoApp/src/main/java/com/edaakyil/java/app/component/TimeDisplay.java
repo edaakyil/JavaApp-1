@@ -1,11 +1,11 @@
 package com.edaakyil.java.app.component;
 
 import com.karandev.io.util.console.Console;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("singleton")
+@Lazy
 public class TimeDisplay {
     public TimeDisplay()
     {
