@@ -1,6 +1,7 @@
 package com.edaakyil.java.app.component;
 
 import com.karandev.io.util.console.Console;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ public class DateDisplay {
         Console.writeLine("I am a default ctor of DateDisplay");
     }
 
+    @PostConstruct
     public void displayLocalDate()
     {
         var today = LocalDate.now();
