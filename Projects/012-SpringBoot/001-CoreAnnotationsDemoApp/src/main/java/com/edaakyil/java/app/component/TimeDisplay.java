@@ -1,6 +1,7 @@
 package com.edaakyil.java.app.component;
 
 import com.karandev.io.util.console.Console;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ public class TimeDisplay {
         Console.writeLine("I am a default ctor of TimeDisplay");
     }
 
+    @PostConstruct
     public void displayLocalTime()
     {
         var now = LocalTime.now();
