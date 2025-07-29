@@ -2,9 +2,9 @@ package com.edaakyil.generator.range;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class IntRangeTest {
+public class IntToLongRangeTest {
     @Test
     public void givenValues_whenBounds_thenIterate()
     {
@@ -12,7 +12,7 @@ public class IntRangeTest {
         var b = 20;
         var index = 0;
 
-        for (int val : IntRange.of(a, b)) {
+        for (long val : IntToLongRange.of(a, b)) {
             System.out.printf("%d ", val);
             assertEquals(a + index++, val);
         }
@@ -28,9 +28,9 @@ public class IntRangeTest {
         var step = 3;
         var index = 0;
 
-        for (int val : IntRange.of(a, b, step)) {
+        for (long val : IntToLongRange.of(a, b, step)) {
             System.out.printf("%d ", val);
-            assertEquals(a + index++ * step, val);
+            assertEquals(a + index++ * (long)step, val);
         }
 
         System.out.println();
@@ -40,13 +40,13 @@ public class IntRangeTest {
     public void givenValues_whenBoundsAndOperator_thenIterate()
     {
         var a = 10;
-        var b = 23;
-        var step = 2;
+        var b = 500_000;
+        var step = 1000;
         var index = 0;
 
-        for (int val : IntRange.of(a, b, val -> val + step)) {
+        for (long val : IntToLongRange.of(a, b, val -> val + step)) {
             System.out.printf("%d ", val);
-            assertEquals(a + index++ * step, val);
+            assertEquals(a + index++ * (long)step, val);
         }
 
         System.out.println();
@@ -59,7 +59,7 @@ public class IntRangeTest {
         var b = 500_000;
         var value = 3;
 
-        for (long val : IntRange.of(a, b, val -> val * value)) {
+        for (long val : IntToLongRange.of(a, b, val -> val * value)) {
             System.out.printf("%d ", val);
         }
 
