@@ -24,12 +24,13 @@ public class IntRangeTest {
     public void givenValues_whenBoundsAndStep_thenIterate()
     {
         var a = 10;
-        var b = 21;
+        var b = 23;
+        var step = 3;
         var index = 0;
 
-        for (int val : IntRange.of(a, b, 2)) {
+        for (int val : IntRange.of(a, b, step)) {
             System.out.printf("%d ", val);
-            assertEquals(a + index++ * 2, val);
+            assertEquals(a + index++ * step, val);
         }
 
         System.out.println();
