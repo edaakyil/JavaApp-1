@@ -25,6 +25,9 @@ public class IntRange implements Iterable<Integer> {
         if (a > b)
             throw new IllegalArgumentException(String.format("a cannot be greater than b: a = %d, b = %d", a, b));
 
+        if (step <= 0)
+            throw new IllegalArgumentException(String.format("Step must be positive: %d", step));
+
         return new IntRange(a, b, step);
     }
 
