@@ -35,4 +35,20 @@ public class IntRangeTest {
 
         System.out.println();
     }
+
+    @Test
+    public void givenValues_whenBoundsAndOperator_thenIterate()
+    {
+        var a = 10;
+        var b = 23;
+        var step = 2;
+        var index = 0;
+
+        for (int val : IntRange.of(a, b, val -> val + step)) {
+            System.out.printf("%d ", val);
+            assertEquals(a + index++ * step, val);
+        }
+
+        System.out.println();
+    }
 }

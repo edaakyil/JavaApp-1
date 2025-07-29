@@ -2,17 +2,18 @@ package com.edaakyil.generator.range;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.IntUnaryOperator;
 
 public class IntRange implements Iterable<Integer> {
     private final int m_a;
     private final int m_b;
-    private final int m_step;
+    private final IntUnaryOperator m_intUnaryOperator;
 
-    private IntRange(int a, int b, int step)
+    private IntRange(int a, int b, IntUnaryOperator intUnaryOperator)
     {
         m_a = a;
         m_b = b;
-        m_step = step;
+        m_intUnaryOperator = intUnaryOperator;
     }
 
     public static IntRange of(int a, int b)
@@ -22,13 +23,18 @@ public class IntRange implements Iterable<Integer> {
 
     public static IntRange of(int a, int b, int step)
     {
-        if (a > b)
-            throw new IllegalArgumentException(String.format("a cannot be greater than b: a = %d, b = %d", a, b));
-
         if (step <= 0)
             throw new IllegalArgumentException(String.format("Step must be positive: %d", step));
 
-        return new IntRange(a, b, step);
+        return of(a, b, val -> val + step);
+    }
+
+    public static IntRange of(int a, int b, IntUnaryOperator intUnaryOperator)
+    {
+        if (a > b)
+            throw new IllegalArgumentException(String.format("a cannot be greater than b: a = %d, b = %d", a, b));
+
+        return new IntRange(a, b, intUnaryOperator);
     }
 
     @Override
@@ -40,7 +46,7 @@ public class IntRange implements Iterable<Integer> {
             @Override
             public boolean hasNext()
             {
-                return m_a + index * m_step <= m_b;
+                return m_a + index <= m_b;
             }
 
             @Override
@@ -49,7 +55,10 @@ public class IntRange implements Iterable<Integer> {
                 if (!hasNext())
                     throw new NoSuchElementException("No such element!...");
 
-                return m_a + index++ * m_step;
+                var result = m_a + index;
+                index = m_intUnaryOperator.applyAsInt(index);
+
+                return result;
             }
         };
     }
