@@ -18,10 +18,8 @@ public class RandomIntGeneratorTest {
         var arr = new int[count];
         var index = 0;
 
-        for (int val : RandomIntGenerator.of(new Random(), origin, bound, count)) {
-            System.out.printf("%d ", val);
+        for (int val : RandomIntGenerator.of(new Random(), origin, bound, count))
             arr[index++] = val;
-        }
 
         System.out.println();
 
