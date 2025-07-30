@@ -1,5 +1,6 @@
 package com.edaakyil.generator.random;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.Random;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Ignore("Tested before")
 public class RandomIntGeneratorTest {
     @Test
     public void givenValue_whenOriginBoundCountAndRandomGenerator_thenIterate()

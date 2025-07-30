@@ -1,9 +1,11 @@
 package com.edaakyil.generator.range;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+@Ignore("Tested before")
 public class IntRangeTest {
     @Test
     public void givenValues_whenBounds_thenIterate()

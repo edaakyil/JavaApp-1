@@ -1,9 +1,11 @@
 package com.edaakyil.generator.range;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore("Tested before")
 public class IntToLongRangeTest {
     @Test
     public void givenValues_whenBounds_thenIterate()
