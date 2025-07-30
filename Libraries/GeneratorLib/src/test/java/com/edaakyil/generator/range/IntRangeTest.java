@@ -67,4 +67,28 @@ public class IntRangeTest {
 
         System.out.println();
     }
+
+    /**
+     * Exception Test
+     *
+     * Belirli koşullar altında exception fırlatıyor mu testi.
+     * Burada exception'ı fırlatmazsa testi geçemeyeceğiz.
+     */
+    @Test
+    public void givenValues_whenBounds_thenThrowsIllegalArgumentException()
+    {
+        assertThrows(IllegalArgumentException.class, () -> IntRange.of(5, 4));
+    }
+
+    /**
+     * Exception Test
+     *
+     * Belirli koşullar altında exception fırlatıyor mu testi.
+     * Burada exception'ı fırlatmazsa testi geçemeyeceğiz.
+     */
+    @Test
+    public void givenValues_whenBoundsAndStep_thenThrowsIllegalArgumentException()
+    {
+        assertThrows(IllegalArgumentException.class, () -> IntRange.of(5, 4, 0));
+    }
 }
