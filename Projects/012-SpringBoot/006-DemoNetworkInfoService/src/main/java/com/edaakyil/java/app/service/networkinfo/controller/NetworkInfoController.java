@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,20 @@ public class NetworkInfoController {
     {
         m_localDateTime = localDateTime;
         m_request = request;
+    }
+
+    //@RequestMapping(value = "/my", method = RequestMethod.GET)
+    @GetMapping("/my")
+    public NetworkInfo networkInfo()
+    {
+        log.info("Network information request");
+
+        return NetworkInfo.builder()
+                .remoteHost(m_request.getRemoteHost())
+                .localAddress(m_request.getLocalAddr())
+                .remotePort(m_request.getRemotePort())
+                .localPort(m_request.getLocalPort())
+                .serviceRequestTime(m_localDateTime)
+                .build();
     }
 }
