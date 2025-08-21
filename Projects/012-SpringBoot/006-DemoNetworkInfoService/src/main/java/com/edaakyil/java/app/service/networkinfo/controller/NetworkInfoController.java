@@ -32,14 +32,17 @@ public class NetworkInfoController {
     @GetMapping("/my")
     public NetworkInfo networkInfo()
     {
-        log.info("Network information request");
-
-        return NetworkInfo.builder()
+        var info = NetworkInfo.builder()
                 .remoteHost(m_request.getRemoteHost())
                 .localAddress(m_request.getLocalAddr())
                 .remotePort(m_request.getRemotePort())
                 .localPort(m_request.getLocalPort())
                 .serviceRequestTime(m_localDateTime)
                 .build();
+
+        log.info("Network information request: {}", info);
+        //log.info("Network information request: {}", info.toString());
+
+        return info;
     }
 }
