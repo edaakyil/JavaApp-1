@@ -28,6 +28,7 @@ public class NetworkInfoController {
         m_request = request;
     }
 
+    // Action Method - Business side
     //@RequestMapping(value = "/my", method = RequestMethod.GET)
     @GetMapping("/my")
     public NetworkInfo networkInfo()
