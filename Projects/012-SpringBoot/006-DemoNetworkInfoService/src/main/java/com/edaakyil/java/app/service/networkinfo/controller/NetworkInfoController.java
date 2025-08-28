@@ -33,7 +33,10 @@ public class NetworkInfoController {
     @GetMapping("/my")
     public NetworkInfoDTO networkInfo()
     {
+        var name = m_request.getParameter("username");
+
         var info = NetworkInfoDTO.builder()
+                .name(name)
                 .remoteHost(m_request.getRemoteHost())
                 .localAddress(m_request.getLocalAddr())
                 .remotePort(m_request.getRemotePort())
