@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class NetworkInfo {
+public class NetworkInfoDTO {
     @Accessors(prefix = "m_")
     private int m_localPort;
     @Accessors(prefix = "m_")

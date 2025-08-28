@@ -1,6 +1,6 @@
 package com.edaakyil.java.app.service.networkinfo.controller;
 
-import com.edaakyil.java.app.service.networkinfo.dto.NetworkInfo;
+import com.edaakyil.java.app.service.networkinfo.dto.NetworkInfoDTO;
 import com.karandev.datetime.configuration.constant.BeanName;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +31,9 @@ public class NetworkInfoController {
     // Action Method - Business side
     //@RequestMapping(value = "/my", method = RequestMethod.GET)
     @GetMapping("/my")
-    public NetworkInfo networkInfo()
+    public NetworkInfoDTO networkInfo()
     {
-        var info = NetworkInfo.builder()
+        var info = NetworkInfoDTO.builder()
                 .remoteHost(m_request.getRemoteHost())
                 .localAddress(m_request.getLocalAddr())
                 .remotePort(m_request.getRemotePort())
