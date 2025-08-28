@@ -32,7 +32,7 @@ public class NetworkInfoController {
     // Action Method - Business side
     //@RequestMapping(value = "/my", method = RequestMethod.GET)
     @GetMapping("/my")
-    public NetworkInfoDTO networkInfo(@RequestParam(name = "username") String name, int age)
+    public NetworkInfoDTO networkInfo(@RequestParam(name = "username", required = false) String name, int age)
     {
         var info = NetworkInfoDTO.builder()
                 .age(age)
