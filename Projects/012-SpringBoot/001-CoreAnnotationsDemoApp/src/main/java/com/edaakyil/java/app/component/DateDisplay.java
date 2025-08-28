@@ -22,4 +22,4 @@ public class DateDisplay {
         Console.writeLine("DateDisplay: %s", today.format(DateTimeFormatter.ISO_DATE));
     }
 }
-git add . && git commit -m Update && git push origin main
+

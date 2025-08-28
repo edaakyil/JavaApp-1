@@ -10,17 +10,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @Ignore("Tested before")
-public class RandomIntGeneratorTest {
+public class RandomDoubleGeneratorTest {
     @Test
     public void givenValue_whenOriginBoundCountAndRandomGenerator_thenIterate()
     {
-        var count = 5;
-        var origin = 0;
-        var bound = 100;
-        var arr = new int[count];
+        var count = 1_000_000;
+        var origin = 2.3456;
+        var bound = 2.345601;
+        var arr = new double[count];
         var index = 0;
 
-        for (int val : RandomIntGenerator.of(new Random(), origin, bound, count))
+        for (double val : RandomDoubleGenerator.of(new Random(), origin, bound, count))
             arr[index++] = val;
 
         System.out.println();

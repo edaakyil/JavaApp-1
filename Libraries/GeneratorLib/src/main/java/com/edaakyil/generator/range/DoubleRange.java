@@ -2,46 +2,41 @@ package com.edaakyil.generator.range;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.function.IntUnaryOperator;
+import java.util.function.DoubleUnaryOperator;
 
-public class IntRange implements Iterable<Integer> {
-    private final int m_a;
-    private final int m_b;
-    private final IntUnaryOperator m_unaryOperator;
+public class DoubleRange implements Iterable<Double> {
+    private final double m_a;
+    private final double m_b;
+    private final DoubleUnaryOperator m_unaryOperator;
 
-    private IntRange(int a, int b, IntUnaryOperator unaryOperator)
+    private DoubleRange(double a, double b, DoubleUnaryOperator unaryOperator)
     {
         m_a = a;
         m_b = b;
         m_unaryOperator = unaryOperator;
     }
 
-    public static IntRange of(int a, int b)
+    public static DoubleRange of(double a, double b, double delta)
     {
-        return of(a, b, 1);
+        if (delta <= 0)
+            throw new IllegalArgumentException(String.format("Step must be positive: %d", delta));
+
+        return of(a, b, val -> val + delta);
     }
 
-    public static IntRange of(int a, int b, int step)
-    {
-        if (step <= 0)
-            throw new IllegalArgumentException(String.format("Step must be positive: %d", step));
-
-        return of(a, b, val -> val + step);
-    }
-
-    public static IntRange of(int a, int b, IntUnaryOperator unaryOperator)
+    public static DoubleRange of(double a, double b, DoubleUnaryOperator unaryOperator)
     {
         if (a > b)
             throw new IllegalArgumentException(String.format("a cannot be greater than b: a = %d, b = %d", a, b));
 
-        return new IntRange(a, b, unaryOperator);
+        return new DoubleRange(a, b, unaryOperator);
     }
 
     @Override
-    public Iterator<Integer> iterator()
+    public Iterator<Double> iterator()
     {
         return new Iterator<>() {
-            int value = m_a;
+            double value = m_a;
 
             @Override
             public boolean hasNext()
@@ -50,13 +45,13 @@ public class IntRange implements Iterable<Integer> {
             }
 
             @Override
-            public Integer next()
+            public Double next()
             {
                 if (!hasNext())
                     throw new NoSuchElementException("No such element!...");
 
                 var result = value;
-                value = m_unaryOperator.applyAsInt(value);
+                value = m_unaryOperator.applyAsDouble(value);
 
                 return result;
             }

@@ -4,13 +4,13 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.random.RandomGenerator;
 
-public class RandomIntGenerator implements Iterable<Integer> {
-    private final int m_origin;
-    private final int m_bound;
+public class RandomDoubleGenerator implements Iterable<Double> {
+    private final double m_origin;
+    private final double m_bound;
     private final int m_count;
     private final RandomGenerator m_randomGenerator;
 
-    private RandomIntGenerator(RandomGenerator randomGenerator, int origin, int bound, int count)
+    private RandomDoubleGenerator(RandomGenerator randomGenerator, double origin, double bound, int count)
     {
         m_origin = origin;
         m_bound = bound;
@@ -18,13 +18,13 @@ public class RandomIntGenerator implements Iterable<Integer> {
         m_randomGenerator = randomGenerator;
     }
 
-    public static RandomIntGenerator of(RandomGenerator randomGenerator, int origin, int bound, int count)
+    public static RandomDoubleGenerator of(RandomGenerator randomGenerator, double origin, double bound, int count)
     {
-        return new RandomIntGenerator(randomGenerator, origin, bound, count);
+        return new RandomDoubleGenerator(randomGenerator, origin, bound, count);
     }
 
     @Override
-    public Iterator<Integer> iterator()
+    public Iterator<Double> iterator()
     {
         return new Iterator<>() {
             int count;
@@ -36,7 +36,7 @@ public class RandomIntGenerator implements Iterable<Integer> {
             }
 
             @Override
-            public Integer next()
+            public Double next()
             {
                 if (!hasNext())
                     throw new NoSuchElementException("Can not generate a value!...");
