@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -31,11 +32,10 @@ public class NetworkInfoController {
     // Action Method - Business side
     //@RequestMapping(value = "/my", method = RequestMethod.GET)
     @GetMapping("/my")
-    public NetworkInfoDTO networkInfo()
+    public NetworkInfoDTO networkInfo(@RequestParam(name = "username") String name, int age)
     {
-        var name = m_request.getParameter("username");
-
         var info = NetworkInfoDTO.builder()
+                .age(age)
                 .name(name)
                 .remoteHost(m_request.getRemoteHost())
                 .localAddress(m_request.getLocalAddr())

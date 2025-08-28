@@ -14,6 +14,8 @@ public class NetworkInfoDTO {
     @Accessors(prefix = "m_")
     private String m_name;
     @Accessors(prefix = "m_")
+    private int m_age;
+    @Accessors(prefix = "m_")
     private int m_localPort;
     @Accessors(prefix = "m_")
     private int m_remotePort; // ephemeral port
