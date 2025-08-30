@@ -32,11 +32,14 @@ public class NetworkInfoController {
     // Action Method - Business side
     //@RequestMapping(value = "/my", method = RequestMethod.GET)
     @GetMapping("/my")
-    public NetworkInfoDTO networkInfo(@RequestParam String firstname,
-                                      int age)
+    public NetworkInfoDTO networkInfo(@RequestParam(name = "first") String firstName,
+                                      @RequestParam(name = "middle", required = false) String middleName,
+                                      @RequestParam(name = "last") String lastName)
     {
         var info = NetworkInfoDTO.builder()
-                .age(age).name(firstname == null ? "anonymous" : firstname)
+                .lastName(lastName)
+                .firstName(firstName)
+                .middleName(middleName)
                 .remoteHost(m_request.getRemoteHost())
                 .localAddress(m_request.getLocalAddr())
                 .remotePort(m_request.getRemotePort())

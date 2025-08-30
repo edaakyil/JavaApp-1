@@ -1,6 +1,7 @@
 package com.edaakyil.java.app.service.networkinfo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
@@ -12,19 +13,35 @@ import java.time.LocalDateTime;
 @Builder
 public class NetworkInfoDTO {
     @Accessors(prefix = "m_")
-    private String m_name;
+    private String m_firstName;
+
     @Accessors(prefix = "m_")
-    private int m_age;
+    private String m_middleName;
+
+    @Accessors(prefix = "m_")
+    private String m_lastName;
+
     @Accessors(prefix = "m_")
     private int m_localPort;
+
     @Accessors(prefix = "m_")
     private int m_remotePort; // ephemeral port
+
     @Accessors(prefix = "m_")
     private String m_remoteHost;
+
     @Accessors(prefix = "m_")
     private String m_localAddress;
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @JsonProperty("serviceRequestTime")
     @Accessors(prefix = "m_")
     private LocalDateTime m_serviceRequestTime;
+
+    // lombok'un getter'ını ezdik
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getMiddleName()
+    {
+        return m_middleName;
+    }
 }
