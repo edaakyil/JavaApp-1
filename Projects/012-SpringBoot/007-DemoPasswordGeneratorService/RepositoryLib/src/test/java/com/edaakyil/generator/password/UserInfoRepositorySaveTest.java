@@ -1,4 +1,4 @@
-package com.edaakyil;
+package com.edaakyil.generator.password;
 
 import com.edaakyil.generator.password.entity.UserInfo;
 import com.edaakyil.generator.password.repository.IUserInfoRepository;
@@ -7,6 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,16 +19,16 @@ public class UserInfoRepositorySaveTest {
     private File m_file;
 
     @BeforeEach
-    public void setUp()
+    public void setUp() throws IOException
     {
-        m_file = new File("eda");
+        var path = Files.createDirectories(Path.of("passwords"));
+        m_file = new File(path.toFile(), "eda");
         m_file.delete();
-
-        m_userInfoRepository = new UserInfoRepository(m_file, new Random());
+        m_userInfoRepository = new UserInfoRepository(new File("passwords"), new Random());
     }
 
     @Test
-    public void saveTest()
+    public void test()
     {
         var userInfo = new UserInfo("eda", "1234", 10, 4);
 

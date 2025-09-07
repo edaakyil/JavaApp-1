@@ -48,6 +48,12 @@ public class UserInfoRepository implements IUserInfoRepository {
     }
 
     @Override
+    public Optional<UserInfo> saveIfNotExists(UserInfo userInfo)
+    {
+        return existsById(userInfo.getUsername()) ? Optional.empty() : Optional.of(save(userInfo));
+    }
+
+    @Override
     public long count()
     {
         throw new  UnsupportedOperationException("Not yet implemented!...");
@@ -86,7 +92,8 @@ public class UserInfoRepository implements IUserInfoRepository {
     @Override
     public boolean existsById(String username)
     {
-        return m_directory.listFiles(f -> f.getName().equals(username)) != null;
+        //return m_directory.list((ignore, n) -> n.equals(username)) != null;
+        return m_directory.toPath().resolve(username).toFile().exists();
     }
 
     @Override
@@ -111,7 +118,7 @@ public class UserInfoRepository implements IUserInfoRepository {
     public <S extends UserInfo> S save(S userInfo)
     {
         try {
-            var path = Files.createFile(Path.of(userInfo.getUsername()));
+            var path = m_directory.toPath().resolve(userInfo.getUsername());
 
             savePasswords(path, userInfo);
 
